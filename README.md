@@ -15,6 +15,6 @@ Description: Compiles your code and generates .class files inside the BUILD fold
 -----------------------------------------------------------------------
 ## Instruction to run:
 
-####Command: ant -buildfile textdecorators/src/build.xml run -Dinput="input.txt" -Dmispelled="mispelled.txt" -Dkeywords="keywords.txt" -Doutput="output.txt" -Ddebug="debug.txt"
+####Command: ant -buildfile textdecorators/src/build.xml run -Dinput="input.txt" -Dmispelled="mispelledwords.txt" -Dkeywords="keywords.txt" -Doutput="output.txt" -Ddebug="debug.txt"
 
 Note: Arguments accept the absolute path of the files.
