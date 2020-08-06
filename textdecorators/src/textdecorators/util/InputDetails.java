@@ -15,7 +15,7 @@ public class InputDetails {
 
     public void update(ArrayList<String> newlines){
         lines = newlines;
-        System.out.println(lines);
+       // System.out.println(lines);
     }
 
     public ArrayList<String> getLine(){

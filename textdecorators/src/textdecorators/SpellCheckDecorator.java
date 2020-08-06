@@ -42,13 +42,10 @@ public class SpellCheckDecorator extends AbstractTextDecorator {
             }    
         }
         catch(IOException e){}
-
-       System.out.println("mispelled: "+ mispelledList);
         
        for(String mispelled: mispelledList){
         for(String line: id.getLine()){
         line = sOp.addNotation(line, mispelled, "SPELLCHECK_");
-        System.out.println(line);
         newLines.add(line);
         }
         id.update(newLines);

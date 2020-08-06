@@ -46,7 +46,7 @@ public class KeywordDecorator extends AbstractTextDecorator {
             for(String keyword: keywordList){
                 for(String line: id.getLine()){
                 line = sOp.addNotation(line, keyword, "KEYWORD_");
-                System.out.println(line);
+              //  System.out.println(line);
                 newLines.add(line);
                 }
                 id.update(newLines);

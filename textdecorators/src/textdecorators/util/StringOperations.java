@@ -47,6 +47,18 @@ public class StringOperations {
 return line;
 }
 
+    public ArrayList<Integer> findChar(String line, String ch) {
+        ArrayList<Integer> op = new ArrayList<Integer>();
+        int index = line.indexOf(ch);
+        while (index > -1) {
+            op.add(index);
+            index = line.indexOf(ch, index + 1);
+        }
+
+        return op;
+
+    }
+
   public ArrayList<Integer> findIndex(String line, String word) {
     ArrayList<Integer> indexes = new ArrayList<Integer>();
     int currIndex;
