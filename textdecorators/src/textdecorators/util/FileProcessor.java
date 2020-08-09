@@ -29,8 +29,8 @@ public class FileProcessor {
      */
     public FileProcessor(String inputFilePath)
             throws InvalidPathException, SecurityException, FileNotFoundException, IOException {
-        // ml = MyLogger.getInstance();
-        // ml.writeMessage("FileProcessor parameterized constructor", DebugLevel.CONSTRUCTOR);
+         //ml = MyLogger.getInstance();
+         //ml.writeMessage("FileProcessor parameterized constructor", MyLogger.DebugLevel.CO);
 
         if (!Files.exists(Paths.get(inputFilePath))) {
             throw new FileNotFoundException("invalid input file or input file in incorrect location");
