@@ -34,7 +34,6 @@ public String addNotation(String line, String word, String notation) {
   for (int k = 0; k < indexesCount; k++) {
     ArrayList<Integer> newIndexes = findIndex(line.toLowerCase(), word);
     int pos = newIndexes.get(i);
-    System.out.println(pos);
     String firstHalf = line.substring(0, pos);
     String secondHalf = line.substring(pos + word.length());
     String key = line.substring(pos, pos+word.length());
