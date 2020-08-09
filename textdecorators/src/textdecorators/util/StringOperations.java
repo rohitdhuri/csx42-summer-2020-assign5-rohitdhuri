@@ -28,23 +28,20 @@ public class StringOperations {
     return newString;
 }
 
-  public String addNotation(String line, String word, String notation) {
-    ArrayList<Integer> indexes = new ArrayList<Integer>();
-    indexes = findIndex(line.toLowerCase(), word);
-    int indexesCount = indexes.size();
-
-    int i = 0;
-    for (int k = 0; k < indexesCount; k++) {
-        ArrayList<Integer> newIndexes = findIndex(line.toLowerCase(), word);
-        int pos = newIndexes.get(i);
-        if (pos != 0)
-            pos = pos - 1;
-        line = insertString(line, notation, pos);
-        i++;
-        //System.out.println(line);
-    }
-
-return line;
+public String addNotation(String line, String word, String notation) {
+  int indexesCount = findIndex(line.toLowerCase(), word).size();
+  int i = 0;
+  for (int k = 0; k < indexesCount; k++) {
+    ArrayList<Integer> newIndexes = findIndex(line.toLowerCase(), word);
+    int pos = newIndexes.get(i);
+    System.out.println(pos);
+    String firstHalf = line.substring(0, pos);
+    String secondHalf = line.substring(pos + word.length());
+    String key = line.substring(pos, pos+word.length());
+    line = firstHalf + notation + "_" + key + "_" + notation + secondHalf;
+    i++;
+  }
+  return line;
 }
 
     public ArrayList<Integer> findChar(String line, String ch) {
@@ -59,66 +56,80 @@ return line;
 
     }
 
-  public ArrayList<Integer> findIndex(String line, String word) {
-    ArrayList<Integer> indexes = new ArrayList<Integer>();
-    int currIndex;
-    String inputLine = line;
-
-    currIndex = findFirstIndex(inputLine, word);
-
-    while (currIndex != -1) {
-      if (indexes.size() > 0) indexes.add(
-        currIndex + word.length() + indexes.get(indexes.size() - 1)
-      ); else indexes.add(currIndex);
-      inputLine = inputLine.substring(currIndex + word.length());
+    public ArrayList<Integer> findIndex(String line, String word) {
+      ArrayList<Integer> indexes = new ArrayList<Integer>();
+      int currIndex;
+      String inputLine = line;
+  
       currIndex = findFirstIndex(inputLine, word);
-    }
-
-    return indexes;
-  }
-
-  public int findFirstIndex(String line, String word) {
-    if (line.length() < 1) return -1;
-    int op = -1;
-    int initialIndex = -1;
-    String t;
-
-    if (line.indexOf(word) == -1) {
-      return -1;
-    }
-
-    while (op == -1) {
-      if (initialIndex == -1) initialIndex = line.indexOf(word); else {
-        int tlength = line
-          .substring(initialIndex, line.indexOf(" ", initialIndex))
-          .length();
-        initialIndex = line.indexOf(word, initialIndex + tlength);
+  
+      while (currIndex != -1) {
+        if (indexes.size() > 0)
+          indexes.add(currIndex + word.length() + indexes.get(indexes.size() - 1));
+        else
+          indexes.add(currIndex);
+        inputLine = inputLine.substring(currIndex + word.length());
+        currIndex = findFirstIndex(inputLine, word);
       }
-      if (line.substring(initialIndex).contains(" ")) t =
-        line.substring(initialIndex, line.indexOf(" ", initialIndex)); else t =
-        line.substring(initialIndex);
+  
+      return indexes;
+    }
 
-      if (t.contains(",")) {
-        String t2 = t;
-        t2 = t2.substring(0, t2.indexOf(","));
-        if (t2.equals(word)) {
+    public static int findFirstIndex(String line, String word) {
+
+      int op = -1;
+      int initialIndex = -99;
+      String t;
+  
+      while (op == -1) {
+        if (line.indexOf(word) == -1)
+          return -1;
+  
+        if (initialIndex == -99) {
+          initialIndex = line.indexOf(word);
+          if (initialIndex == -1)
+            return -1;
+        }
+  
+        else {
+          int tlength = line.substring(initialIndex, line.indexOf(" ", initialIndex)).length();
+          initialIndex = line.indexOf(word, initialIndex + tlength);
+          if (initialIndex == -1)
+            return -1;
+        }
+        if (line.substring(initialIndex).contains(" "))
+          t = line.substring(initialIndex, line.indexOf(" ", initialIndex));
+        else
+          t = line.substring(initialIndex);
+  
+        if (t.contains("_")) {
+          String t2 = t;
+          t2 = t2.substring(0, t2.indexOf("_"));
+          if (t2.equals(word)) {
+            op = initialIndex;
+            break;
+          }
+        } else if (t.contains(",")) {
+          String t2 = t;
+          t2 = t2.substring(0, t2.indexOf(","));
+          if (t2.equals(word)) {
+            op = initialIndex;
+            break;
+          }
+        } else if (t.contains(".")) {
+          String t2 = t;
+          t2 = t2.substring(0, t2.indexOf("."));
+          if (t2.equals(word)) {
+            op = initialIndex;
+            break;
+          }
+        } else if (t.equals(word)) {
           op = initialIndex;
           break;
         }
-      } else if (t.contains(".")) {
-        String t2 = t;
-        t2 = t2.substring(0, t2.indexOf("."));
-        if (t2.equals(word)) {
-          op = initialIndex;
-          break;
-        }
-      } else if (t.equals(word)) {
-        op = initialIndex;
-        break;
       }
+      return op;
     }
-    return op;
   }
-}
-
+  
 

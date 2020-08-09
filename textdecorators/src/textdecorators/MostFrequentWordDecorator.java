@@ -53,7 +53,7 @@ public class MostFrequentWordDecorator extends AbstractTextDecorator {
     ArrayList<String> newLines = new ArrayList<String>();
 
     for (String line : lines) {
-      line = sOp.addNotation(line, mostFrequentWord, "MOST_FREQUENT_");
+      line = sOp.addNotation(line, mostFrequentWord, "MOST_FREQUENT");
       newLines.add(line);
       //System.out.println(line);
     }

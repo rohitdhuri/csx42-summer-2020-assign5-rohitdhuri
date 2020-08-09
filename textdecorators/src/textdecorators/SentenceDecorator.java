@@ -58,7 +58,7 @@ public class SentenceDecorator extends AbstractTextDecorator{
             newLines.add(line);
     }
     newLines.set(0, "BEGIN_SENTENCE__"+newLines.get(0));
-    int endIndex = newLines.get(newLines.size()-1).length()-16;
+    int endIndex = newLines.get(newLines.size()-1).length()-17;
     newLines.set(newLines.size()-1, newLines.get(newLines.size()-1).substring(0, endIndex));
     id.update(newLines);
     System.out.println(id.getLine());
